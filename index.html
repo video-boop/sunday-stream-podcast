@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunday Streams Podcast | Church Production Culture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark-2: #1A1A1A;
+    --white: #F5F0E8;
+    --grey: #888880;
+    --accent: #8B1A1A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 3rem 4rem;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(139,26,26,0.12) 0%, transparent 60%),
+      linear-gradient(180deg, #0A0A0A 0%, #0f0d0a 100%);
+  }
+
+  /* Animated cross/grid lines */
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4.5rem, 12vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 0.2em;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title span { color: var(--gold); }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--grey);
+    margin: 1.5rem 0 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+    line-height: 1.6;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--grey); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  /* ── MISSION STRIP ── */
+  .mission-strip {
+    background: var(--gold);
+    padding: 1rem 3rem;
+    overflow: hidden;
+  }
+  .ticker {
+    display: flex; gap: 4rem;
+    animation: ticker 20s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--black);
+  }
+  .ticker-dot { color: var(--accent); }
+
+  /* ── ABOUT ── */
+  .section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .section-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: 640px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .stat-card {
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 1.5rem;
+    background: var(--dark-2);
+  }
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-top: 0.3rem;
+  }
+
+  .about-image-block {
+    position: relative;
+  }
+  .about-image-block::before {
+    content: '';
+    position: absolute;
+    top: -1rem; right: -1rem;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(201,168,76,0.2);
+    z-index: 0;
+  }
+  .about-image-block img {
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 1;
+    filter: grayscale(20%) contrast(1.05);
+  }
+  .about-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--dark-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .placeholder-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--grey);
+    opacity: 0.4;
+  }
+
+  /* ── PILLARS ── */
+  .pillars-section {
+    background: var(--dark);
+    padding: 6rem 3rem;
+  }
+  .pillars-inner { max-width: 1200px; margin: 0 auto; }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.1);
+    margin-top: 3rem;
+  }
+  .pillar-card {
+    background: var(--dark);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .pillar-card:hover { background: var(--dark-2); }
+  .pillar-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .pillar-card:hover::after { transform: scaleX(1); }
+
+  .pillar-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .pillar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+  .pillar-body {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--grey);
+  }
+
+  /* ── TEAM ── */
+  .team-section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .team-card {
+    background: var(--dark-2);
+    border: 1px solid rgba(201,168,76,0.08);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .team-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+  .team-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(30%);
+    transition: filter 0.3s;
+  }
+  .team-card:hover .team-photo { filter: grayscale(0); }
+  .team-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #1a1a1a, #222);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .team-info { padding: 1.5rem; }
+  .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+  .team-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0.3rem 0 0.8rem;
+  }
+  .team-bio { font-size: 0.88rem; line-height: 1.6; color: var(--grey); }
+
+  /* ── EPISODES ── */
+  .episodes-section {
+    background: var(--dark);
+    padding: 6rem 3rem;
+  }
+  .episodes-inner { max-width: 1200px; margin: 0 auto; }
+  .episode-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1px; }
+  .episode-item {
+    background: var(--dark-2);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-left: 2px solid transparent;
+  }
+  .episode-item:hover { background: #222; border-left-color: var(--gold); }
+  .ep-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: rgba(201,168,76,0.25);
+    min-width: 3rem;
+    line-height: 1;
+  }
+  .ep-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .ep-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--grey);
+    text-transform: uppercase;
+  }
+  .ep-duration {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--grey);
+    white-space: nowrap;
+  }
+  .play-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    font-size: 0.7rem;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .episode-item:hover .play-btn { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+  /* ── MENTORSHIP CTA ── */
+  .cta-section {
+    padding: 8rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 0.95;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .cta-title em { color: var(--gold); font-style: normal; }
+  .cta-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--grey);
+    margin-bottom: 2.5rem;
+  }
+  .divider {
+    width: 60px; height: 1px;
+    background: var(--gold);
+    margin: 2rem auto;
+    opacity: 0.5;
+  }
+
+  /* ── PLATFORMS ── */
+  .platforms {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 2rem 3rem 4rem;
+    opacity: 0.5;
+  }
+  .platform-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--grey);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: color 0.2s, opacity 0.2s;
+  }
+  .platform-badge:hover { color: var(--gold); opacity: 1; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--grey);
+    letter-spacing: 0.05em;
+  }
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .footer-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .section, .team-section { padding: 4rem 1.5rem; }
+    .pillars-section, .episodes-section { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Sunday Streams</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#episodes">Episodes</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#mentorship">Mentorship</a></li>
+  </ul>
+  <a href="#mentorship" class="btn-primary" style="padding:0.6rem 1.4rem;font-size:0.65rem;">Join Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">The Podcast for Church Creatives</p>
+    <h1 class="hero-title">Sunday<br><span>Streams</span></h1>
+    <p class="hero-subtitle">
+      Where church production culture thrives.<br>
+      Health. Wealth. Purpose. Community.
+    </p>
+    <div class="hero-ctas">
+      <a href="#episodes" class="btn-primary">▶ &nbsp; Listen Now</a>
+      <a href="#mentorship" class="btn-outline">Join the Mentorship</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="mission-strip">
+  <div class="ticker">
+    <span>Health <span class="ticker-dot">✦</span></span>
+    <span>Wealth <span class="ticker-dot">✦</span></span>
+    <span>Prosperity <span class="ticker-dot">✦</span></span>
+    <span>Community <span class="ticker-dot">✦</span></span>
+    <span>Church Production Culture <span class="ticker-dot">✦</span></span>
+    <span>Mentorship <span class="ticker-dot">✦</span></span>
+    <span>Sunday Streams Podcast <span class="ticker-dot">✦</span></span>
+    <!-- duplicate for seamless loop -->
+    <span>Health <span class="ticker-dot">✦</span></span>
+    <span>Wealth <span class="ticker-dot">✦</span></span>
+    <span>Prosperity <span class="ticker-dot">✦</span></span>
+    <span>Community <span class="ticker-dot">✦</span></span>
+    <span>Church Production Culture <span class="ticker-dot">✦</span></span>
+    <span>Mentorship <span class="ticker-dot">✦</span></span>
+    <span>Sunday Streams Podcast <span class="ticker-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="about-grid">
+  <div>
+    <p class="section-label">Our Mission</p>
+    <h2 class="section-title">Built for the People Behind the Pulpit</h2>
+    <p class="section-body">
+      Sunday Streams is more than a podcast — it's a mentorship movement for church production teams, 
+      worship leaders, and ministry builders who are ready to grow in every dimension of life.
+      We talk real strategy, real faith, and real results.
+    </p>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Episodes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5K+</div>
+        <div class="stat-label">Community Members</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Platforms</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Impact</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-image-block">
+    <div class="about-image-placeholder">
+      <span class="placeholder-text">Logo</span>
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars-section">
+  <div class="pillars-inner">
+    <p class="section-label">What We Build</p>
+    <h2 class="section-title">Three Pillars of Thriving</h2>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <span class="pillar-icon">🏥</span>
+        <h3 class="pillar-title">Health</h3>
+        <p class="pillar-body">
+          Mental, physical, and spiritual health for those who serve. 
+          We build sustainable ministry leaders who don't burn out — they level up.
+        </p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">💰</span>
+        <h3 class="pillar-title">Wealth</h3>
+        <p class="pillar-body">
+          Financial literacy and entrepreneurship for church professionals. 
+          Your calling and your abundance are not in conflict.
+        </p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🌱</span>
+        <h3 class="pillar-title">Prosperity</h3>
+        <p class="pillar-body">
+          Growing your team, your community, and your cultural impact. 
+          Thriving is the standard — not the exception.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="team-section">
+  <p class="section-label">The Hosts</p>
+  <h2 class="section-title">Meet the Team</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo-placeholder">
+        <span class="placeholder-text" style="font-size:3rem;opacity:0.2;">J</span>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Jesse</div>
+        <div class="team-role">Host & Lead Pastor</div>
+        <p class="team-bio">Visionary pastor, production strategist, and community builder dedicated to helping church teams reach their highest potential.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo-placeholder">
+        <span class="placeholder-text" style="font-size:3rem;opacity:0.2;">D</span>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Dan</div>
+        <div class="team-role">Co-Host & Creative Director</div>
+        <p class="team-bio">Church production veteran bringing technical excellence and creative leadership to ministries ready to level up their Sunday experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EPISODES -->
+<section id="episodes" class="episodes-section">
+  <div class="episodes-inner">
+    <p class="section-label">Latest Episodes</p>
+    <h2 class="section-title">Tune In</h2>
+    <div class="episode-list">
+      <div class="episode-item">
+        <div class="ep-num">01</div>
+        <div>
+          <div class="ep-title">Building a Thriving Production Team from Scratch</div>
+          <div class="ep-meta">Church Production · Season 1</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="ep-duration">47 min</span>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+      <div class="episode-item">
+        <div class="ep-num">02</div>
+        <div>
+          <div class="ep-title">Financial Freedom for Ministry Leaders</div>
+          <div class="ep-meta">Wealth · Season 1</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="ep-duration">52 min</span>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+      <div class="episode-item">
+        <div class="ep-num">03</div>
+        <div>
+          <div class="ep-title">The Online Community Blueprint for Churches</div>
+          <div class="ep-meta">Community · Season 1</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="ep-duration">61 min</span>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+      <div class="episode-item">
+        <div class="ep-num">04</div>
+        <div>
+          <div class="ep-title">Pastoral Health: Avoiding Burnout in Ministry</div>
+          <div class="ep-meta">Health · Season 1</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="ep-duration">44 min</span>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+      <div class="episode-item">
+        <div class="ep-num">05</div>
+        <div>
+          <div class="ep-title">Automation Tools Every Church Should Use</div>
+          <div class="ep-meta">Technology · Season 1</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span class="ep-duration">58 min</span>
+          <div class="play-btn">▶</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORSHIP CTA -->
+<section id="mentorship" class="cta-section">
+  <div class="cta-inner">
+    <p class="section-label">Mentorship Program</p>
+    <h2 class="cta-title">Ready to <em>Thrive</em>?</h2>
+    <div class="divider"></div>
+    <p class="cta-body">
+      Join our mentorship community and get direct access to tools, teaching, 
+      and a team that believes your ministry deserves to flourish — in health, wealth, and culture.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#" class="btn-primary">Apply for Mentorship</a>
+      <a href="#episodes" class="btn-outline">Listen First</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<div class="platforms">
+  <a href="#" class="platform-badge">🎙 Apple Podcasts</a>
+  <a href="#" class="platform-badge">🟢 Spotify</a>
+  <a href="#" class="platform-badge">▶ YouTube</a>
+  <a href="#" class="platform-badge">☁ Anchor</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sunday Streams</div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#episodes">Episodes</a></li>
+    <li><a href="#mentorship">Mentorship</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Sunday Streams Podcast. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
