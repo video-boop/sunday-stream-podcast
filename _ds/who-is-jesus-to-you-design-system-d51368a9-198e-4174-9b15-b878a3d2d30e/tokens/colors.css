@@ -1,1 +1,55 @@
-:root{--ink-900:#070B10;--ink-800:#0C141C;--ink-700:#12212E;--ink-600:#1B3348;--blue-700:#14395B;--blue-600:#1B5687;--blue-500:#2E86C8;--blue-400:#59A9DC;--blue-300:#8FC9E8;--blue-200:#BFE3F2;--ember-700:#8E1B0B;--ember-600:#B32410;--ember-500:#E8511E;--ember-400:#F2761B;--gold-500:#F5A81C;--gold-400:#FBC33A;--gold-300:#FBD97A;--bone-100:#F6F1E8;--bone-200:#E7DECF;--bone-300:#C9BEAB;--sage-500:#7E9B5A;--white:#FFFFFF;--black:#000000;--surface-canvas:var(--ink-900);--surface-raised:var(--ink-800);--surface-card:var(--ink-700);--surface-inset:#0A121A;--surface-light:var(--bone-100);--surface-light-card:var(--white);--text-primary:var(--bone-100);--text-secondary:#A9B6C2;--text-muted:#6C7E8D;--text-on-light:var(--ink-900);--text-on-light-muted:#4A5A66;--text-accent:var(--gold-500);--text-link:var(--blue-400);--text-link-hover:var(--blue-300);--brand-primary:var(--ember-500);--brand-primary-hover:var(--ember-400);--brand-primary-press:var(--ember-600);--brand-secondary:var(--blue-500);--brand-secondary-hover:var(--blue-400);--accent-gold:var(--gold-500);--border-hairline:rgba(246,241,232,.12);--border-strong:rgba(246,241,232,.28);--border-on-light:rgba(7,11,16,.14);--rule-gold:var(--gold-500);--status-live:var(--ember-500);--status-new:var(--gold-500);--status-info:var(--blue-500);--status-quiet:var(--text-muted);--grad-revelation:linear-gradient(104deg,var(--blue-700) 0%,var(--blue-500) 26%,var(--ember-500) 68%,var(--gold-500) 100%);--grad-ember:linear-gradient(180deg,var(--ember-500) 0%,var(--gold-500) 100%);--grad-water:linear-gradient(180deg,var(--blue-600) 0%,var(--blue-300) 100%);--grad-scrim:linear-gradient(180deg,rgba(7,11,16,0) 0%,rgba(7,11,16,.72) 58%,rgba(7,11,16,.96) 100%);--grad-scrim-left:linear-gradient(90deg,rgba(7,11,16,.94) 0%,rgba(7,11,16,.72) 42%,rgba(7,11,16,0) 88%)}
+:root{
+  /* Base — pulled from the reveal painting */
+  --ink-900:#070B10; --ink-800:#0C141C; --ink-700:#12212E; --ink-600:#1B3348;
+  --blue-700:#14395B; --blue-600:#1B5687; --blue-500:#2E86C8; --blue-400:#59A9DC; --blue-300:#8FC9E8; --blue-200:#BFE3F2;
+  --ember-700:#8E1B0B; --ember-600:#B32410; --ember-500:#E8511E; --ember-400:#F2761B;
+  --gold-500:#F5A81C; --gold-400:#FBC33A; --gold-300:#FBD97A;
+  --bone-100:#F6F1E8; --bone-200:#E7DECF; --bone-300:#C9BEAB;
+  --sage-500:#7E9B5A;
+  --white:#FFFFFF; --black:#000000;
+
+  /* Semantic — surfaces */
+  --surface-canvas:var(--ink-900);
+  --surface-raised:var(--ink-800);
+  --surface-card:var(--ink-700);
+  --surface-inset:#0A121A;
+  --surface-light:var(--bone-100);
+  --surface-light-card:var(--white);
+
+  /* Semantic — text */
+  --text-primary:var(--bone-100);
+  --text-secondary:#A9B6C2;
+  --text-muted:#6C7E8D;
+  --text-on-light:var(--ink-900);
+  --text-on-light-muted:#4A5A66;
+  --text-accent:var(--gold-500);
+  --text-link:var(--blue-400);
+  --text-link-hover:var(--blue-300);
+
+  /* Semantic — brand actions */
+  --brand-primary:var(--ember-500);
+  --brand-primary-hover:var(--ember-400);
+  --brand-primary-press:var(--ember-600);
+  --brand-secondary:var(--blue-500);
+  --brand-secondary-hover:var(--blue-400);
+  --accent-gold:var(--gold-500);
+
+  /* Borders & lines */
+  --border-hairline:rgba(246,241,232,.12);
+  --border-strong:rgba(246,241,232,.28);
+  --border-on-light:rgba(7,11,16,.14);
+  --rule-gold:var(--gold-500);
+
+  /* Semantic — status */
+  --status-live:var(--ember-500);
+  --status-new:var(--gold-500);
+  --status-info:var(--blue-500);
+  --status-quiet:var(--text-muted);
+
+  /* Signature gradients (from the painting: cold water left, holy fire right) */
+  --grad-revelation:linear-gradient(104deg,var(--blue-700) 0%,var(--blue-500) 26%,var(--ember-500) 68%,var(--gold-500) 100%); /* @kind color */
+  --grad-ember:linear-gradient(180deg,var(--ember-500) 0%,var(--gold-500) 100%); /* @kind color */
+  --grad-water:linear-gradient(180deg,var(--blue-600) 0%,var(--blue-300) 100%); /* @kind color */
+  --grad-scrim:linear-gradient(180deg,rgba(7,11,16,0) 0%,rgba(7,11,16,.72) 58%,rgba(7,11,16,.96) 100%); /* @kind color */
+  --grad-scrim-left:linear-gradient(90deg,rgba(7,11,16,.94) 0%,rgba(7,11,16,.72) 42%,rgba(7,11,16,0) 88%); /* @kind color */
+}

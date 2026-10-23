@@ -1,1 +1,8 @@
-@import url(https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap);:root{--font-display:"Marcellus",Georgia,serif;--font-quote:"Cormorant Garamond",Georgia,serif;--font-ui:"Archivo","Helvetica Neue",Arial,sans-serif;--font-mono:"IBM Plex Mono",ui-monospace,monospace}
+/* Webfonts are loaded from Google Fonts (no original brand font files were supplied — see readme.md "Font substitution"). */
+@import url("https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap");
+:root{
+  --font-display:"Marcellus",Georgia,serif;
+  --font-quote:"Cormorant Garamond",Georgia,serif;
+  --font-ui:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+}

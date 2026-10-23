@@ -1,1 +1,12 @@
-:root{--shadow-none:none;--shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 6px 18px rgba(0,0,0,.45);--shadow-lg:0 18px 48px rgba(0,0,0,.55);--shadow-ember:0 10px 32px rgba(232,81,30,.28);--shadow-water:0 10px 32px rgba(46,134,200,.26);--glow-gold:0 0 0 1px rgba(245,168,28,.5),0 0 28px rgba(245,168,28,.22);--inset-hairline:inset 0 1px 0 rgba(246,241,232,.06);--blur-glass:saturate(140%) blur(18px);--scrim-panel:rgba(12,20,28,.72)}
+:root{
+  --shadow-none:none;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:0 6px 18px rgba(0,0,0,.45);
+  --shadow-lg:0 18px 48px rgba(0,0,0,.55);
+  --shadow-ember:0 10px 32px rgba(232,81,30,.28);
+  --shadow-water:0 10px 32px rgba(46,134,200,.26);
+  --glow-gold:0 0 0 1px rgba(245,168,28,.5),0 0 28px rgba(245,168,28,.22);
+  --inset-hairline:inset 0 1px 0 rgba(246,241,232,.06);
+  --blur-glass:saturate(140%) blur(18px); /* @kind other */
+  --scrim-panel:rgba(12,20,28,.72); /* @kind other */
+}

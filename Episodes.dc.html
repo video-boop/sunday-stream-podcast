@@ -1,32 +1,37 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="./support.js"></script></head><body><x-dc><helmet><script src="./ds-base.js"></script><script src="./image-slot.js"></script><style>*{box-sizing:border-box}body{margin:0;background:#070b10;color:#f6f1e8;font-family:var(--font-ui),system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#f6f1e8;text-decoration:none}a:hover{color:#fbc33a}</style></helmet><div style="background:#070b10;min-height:100vh;overflow-x:hidden"><div style="height:3px;background:linear-gradient(104deg,#14395b 0,#2e86c8 26%,#e8511e 68%,#f5a81c 100%)"></div><header style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px clamp(20px,4vw,56px);background:rgba(7,11,16,.82);backdrop-filter:saturate(140%) blur(18px);border-bottom:1px solid rgba(246,241,232,.12)"><a href="PodcastSite.dc.html" style="display:flex;flex-direction:column;line-height:1;gap:6px"><span style="font:400 20px/1 var(--font-display);color:#f6f1e8">WHO IS JESUS TO YOU ?</span><span style="font:700 10px/1 var(--font-ui);letter-spacing:.22em;text-transform:uppercase;color:#6c7e8d">With David Harris Jr</span></a><nav style="display:flex;align-items:center;gap:clamp(14px,2vw,28px)"><a href="PodcastSite.dc.html#episodes" style="font:600 12px/1 var(--font-ui);letter-spacing:.08em;text-transform:uppercase;color:#a9b6c2" style-hover="color:#FBC33A">Our guests</a> <a href="Subscribe.dc.html" style="font:600 12px/1 var(--font-ui);letter-spacing:.08em;text-transform:uppercase;color:#a9b6c2" style-hover="color:#FBC33A">Subscribe</a></nav></header><section style="padding:clamp(40px,5vw,72px) clamp(20px,4vw,56px) clamp(24px,3vw,40px)"><div style="max-width:1080px;margin:0 auto"><div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap"><div><div style="font:700 12px/1 var(--font-ui);letter-spacing:.22em;text-transform:uppercase;color:#f5a81c">The library</div><h1 style="margin:14px 0 0;font:400 clamp(32px,4vw,52px)/1.1 var(--font-display);letter-spacing:-.015em;color:#f6f1e8">Full episode Library</h1><div style="width:56px;height:3px;background:linear-gradient(180deg,#e8511e,#f5a81c);margin-top:16px;border-radius:2px"></div></div></div></div></section><section style="padding:0 clamp(20px,4vw,56px) clamp(20px,2vw,32px)"><div style="max-width:1080px;margin:0 auto;background:#0c141c;border:1px solid rgba(246,241,232,.12);border-radius:14px;padding:clamp(18px,2.4vw,28px);box-shadow:0 18px 48px rgba(0,0,0,.45)"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap"><div><span style="font:700 11px/1 var(--font-ui);letter-spacing:.18em;text-transform:uppercase;color:#f5a81c">Now playing</span> <span style="font:500 12px/1 var(--font-mono);color:#6c7e8d;margin-left:12px">{{ nowEp }}</span></div><span style="font:400 15px/1.3 var(--font-quote);font-style:italic;color:#a9b6c2">{{ nowGuest }}</span></div><div style="margin:10px 0 14px;font:400 clamp(20px,2.2vw,26px)/1.25 var(--font-display);color:#f6f1e8">{{ nowTitle }}</div><iframe src="https://open.spotify.com/embed/show/0AMiIG6clWtStOtqi4sZcO?utm_source=generator&amp;theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px;display:block"></iframe><div style="margin-top:10px;font:400 12.5px/1.6 var(--font-ui);color:#6c7e8d">Demo player — swap in each episode's Spotify or Megaphone embed URL once the show is live.</div></div></section><section style="padding:0 clamp(20px,4vw,56px) clamp(56px,7vw,96px)"><div style="max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:10px"><sc-for list="{{ episodes }}" as="e" hint-placeholder-count="8"><div style=""><button onclick="e.play" aria-label="Play episode" style="flex:0 0 44px;width:44px;height:44px;border-radius:999px;background:0 0;border:1px solid rgba(246,241,232,.28);color:#f6f1e8;font:400 13px/1 var(--font-ui);cursor:pointer;transition:all 140ms cubic-bezier(.2,.6,.2,1)" style-hover="background:#E8511E;border-color:#E8511E">{{ e.glyph }}</button> <span style="flex:0 0 52px;font:500 12.5px/1 var(--font-mono);color:#6c7e8d">{{ e.num }}</span><div style="flex:1 1 260px;min-width:0"><div style="font:400 18px/1.3 var(--font-display);color:#f6f1e8;text-wrap:pretty">{{ e.title }}</div><div style="margin-top:5px;font:400 13px/1.4 var(--font-ui);color:#a9b6c2">{{ e.guest }}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><sc-for list="{{ e.tags }}" as="tag" hint-placeholder-count="2"><span style="font:700 10.5px/1 var(--font-ui);letter-spacing:.08em;text-transform:uppercase;color:#a9b6c2;background:rgba(246,241,232,.07);border:1px solid rgba(246,241,232,.12);border-radius:999px;padding:5px 9px">{{ tag }}</span></sc-for></div><span style="flex:0 0 44px;text-align:right;font:500 12.5px/1 var(--font-mono);color:#6c7e8d">{{ e.dur }}</span><sc-if value="{{ e.profileHref }}" hint-placeholder-val="{{ true }}"><a href="{{ e.profileHref }}" style="font:700 11px/1 var(--font-ui);letter-spacing:.1em;text-transform:uppercase;color:#fbc33a;white-space:nowrap">Guest →</a></sc-if></div></sc-for></div></section><footer style="padding:clamp(28px,4vw,44px) clamp(20px,4vw,56px);border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap"><div style="font:400 20px/1 var(--font-display);color:#f6f1e8">WHO IS JESUS TO YOU ?</div><a href="PodcastSite.dc.html" style="font:600 12px/1 var(--font-ui);letter-spacing:.08em;text-transform:uppercase;color:#a9b6c2" style-hover="color:#FBC33A">← Back to the show</a></footer></div></x-dc><script type="text/x-dc" data-dc-script>class Component extends DCLogic {
-  state = { playing: 0 };
-  data = [
-    { num: "Ep. 14", title: "Conversation with Bill Johnson", guest: "Bill Johnson \u00b7 Senior Leader, Bethel Church", tags: ["Testimony", "Renewal"], dur: "52:18", profileHref: "GuestProfile.dc.html?guest=bill-johnson" },
-    { num: "Ep. 13", title: "Conversation with Jesse Bradley", guest: "Jesse Bradley \u00b7 Lead Pastor, Grace Community Church", tags: ["Hope", "Calling"], dur: "49:04", profileHref: "GuestProfile.dc.html?guest=jesse-bradley" },
-    { num: "Ep. 12", title: "I built the career and lost the man", guest: "Tom Vasquez", tags: ["Calling", "Identity"], dur: "54:40", profileHref: "GuestProfile.dc.html?guest=tom-vasquez" },
-    { num: "Ep. 11", title: "Twenty years in ministry before I believed it", guest: "Alicia Grant", tags: ["Doubt", "Ministry"], dur: "47:22", profileHref: "GuestProfile.dc.html?guest=alicia-grant" },
-    { num: "Ep. 10", title: "The prison chaplain who kept my letters", guest: "Sam Whitfield", tags: ["Redemption", "Prison"], dur: "58:11", profileHref: "GuestProfile.dc.html?guest=sam-whitfield" },
-    { num: "Ep. 9", title: "I stopped asking why and started asking who", guest: "Dana Reyes", tags: ["Grief", "Prayer"], dur: "51:47", profileHref: "GuestProfile.dc.html?guest=dana-reyes" },
-    { num: "Ep. 8", title: "The kitchen table where I said it out loud", guest: "Maria Delgado", tags: ["Forgiveness", "Family"], dur: "45:59", profileHref: null },
-    { num: "Ep. 7", title: "Coming home from the war without a why", guest: "Andre Coleman", tags: ["Service", "Purpose"], dur: "56:30", profileHref: null },
-    { num: "Ep. 6", title: "The lab taught me certainty. He taught me trust", guest: "Grace Liu", tags: ["Science", "Faith"], dur: "50:12", profileHref: null },
-    { num: "Ep. 5", title: "Sober at sixty-one", guest: "Robert Hayes", tags: ["Addiction", "Grace"], dur: "48:45", profileHref: null },
-    { num: "Ep. 4", title: "Raising three alone and praying out loud", guest: "Keisha Thompson", tags: ["Motherhood", "Provision"], dur: "44:08", profileHref: null },
-    { num: "Ep. 3", title: "The church hurt me. He didn't", guest: "Daniel Osei", tags: ["Healing", "Church"], dur: "53:26", profileHref: null },
-    { num: "Ep. 2", title: "An atheist's slow yes", guest: "Lena Fischer", tags: ["Doubt", "Conversion"], dur: "57:02", profileHref: null },
-    { num: "Ep. 1", title: "The first answer: David asks himself", guest: "David Harris Jr \u00b7 Host", tags: ["Testimony", "Origin"], dur: "41:33", profileHref: null }
-  ];
-  renderVals() {
-    const p = this.state.playing;
-    const base = { display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap", padding: "16px clamp(14px,2vw,22px)", borderRadius: "14px", border: "1px solid rgba(246,241,232,.12)", background: "#0C141C" };
-    return {
-      nowEp: this.data[p].num, nowTitle: this.data[p].title, nowGuest: this.data[p].guest,
-      episodes: this.data.map((e, i) => ({
-        ...e,
-        play: () => this.setState({ playing: i }),
-        glyph: p === i ? "\u275A\u275A" : "\u25B6",
-        rowStyle: p === i ? { ...base, borderColor: "rgba(245,168,28,.55)", background: "#12212E" } : base
-      }))
-    };
-  }
-}</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Episodes · WHO IS JESUS TO YOU ?</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><script src="./ds-base.js"></script><script src="./image-slot.js"></script><style>*{box-sizing:border-box}body{margin:0;background:#070B10;color:#F6F1E8;font-family:var(--font-ui),system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#F6F1E8;text-decoration:none}a:hover{color:#FBC33A}</style></helmet>
+<div style="background:#070B10;min-height:100vh;overflow-x:hidden">
+<div style="height:3px;background:linear-gradient(104deg,#14395B 0%,#2E86C8 26%,#E8511E 68%,#F5A81C 100%)"></div>
+<header style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px clamp(20px,4vw,56px);background:rgba(7,11,16,.82);backdrop-filter:saturate(140%) blur(18px);border-bottom:1px solid rgba(246,241,232,.12)">
+<a href="PodcastSite.dc.html" style="display:flex;flex-direction:column;line-height:1;gap:6px"><span style="font:400 20px/1 var(--font-display);color:#F6F1E8">WHO IS JESUS TO YOU ?</span><span style="font:700 10px/1 var(--font-ui);letter-spacing:.22em;text-transform:uppercase;color:#6C7E8D">With David Harris Jr</span></a>
+<nav style="display:flex;align-items:center;gap:clamp(14px,2vw,28px)">
+<a href="PodcastSite.dc.html" style="font:600 12px/1 var(--font-ui);letter-spacing:.08em;text-transform:uppercase;color:#A9B6C2" style-hover="color:#FBC33A">Home</a>
+<a href="Subscribe.dc.html" style="font:600 12px/1 var(--font-ui);letter-spacing:.08em;text-transform:uppercase;color:#A9B6C2" style-hover="color:#FBC33A">Subscribe</a>
+</nav></header>
+<section style="padding:clamp(56px,8vw,120px) clamp(20px,4vw,56px)">
+<div style="max-width:720px;margin:0 auto;text-align:center">
+<div style="font:700 12px/1 var(--font-ui);letter-spacing:.22em;text-transform:uppercase;color:#F5A81C">The library</div>
+<h1 style="margin:16px 0 0;font:400 clamp(34px,4.4vw,56px)/1.08 var(--font-display);letter-spacing:-.015em;color:#F6F1E8">Episodes are coming</h1>
+<p style="margin:20px auto 0;max-width:520px;font:400 17px/1.7 var(--font-ui);color:#A9B6C2">Season one is in production. Subscribe and the first conversation will find you the day it drops.</p>
+<div style="display:flex;gap:12px;margin-top:30px;justify-content:center;flex-wrap:wrap">
+<x-import component-from-global-scope="WhoIsJesusToYouDesignSystem_d51368.Button" variant="gold" size="lg" href="Subscribe.dc.html" hint-size="260px,52px">All ways to subscribe</x-import>
+</div>
+</div>
+</section>
+<footer style="padding:clamp(28px,4vw,44px) clamp(20px,4vw,56px);border-top:1px solid rgba(246,241,232,.12);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap">
+<div style="font:400 20px/1 var(--font-display);color:#F6F1E8">WHO IS JESUS TO YOU ?</div>
+<a href="PodcastSite.dc.html" style="font:600 12px/1 var(--font-ui);letter-spacing:.08em;text-transform:uppercase;color:#A9B6C2" style-hover="color:#FBC33A">&larr; Back to the show</a>
+</footer>
+</div>
+</x-dc>
+</body>
+</html>
